@@ -4,7 +4,7 @@ url.setRequestHeader('Content-type', 'application/json')
 url.onreadystatechange = () => {
 	if (url.readyState == XMLHttpRequest.DONE) {
 		let data = JSON.parse(url.responseText)
-		window.location.href = "second.html"
+		window.location.href = "../htmlPages/second.html"
 	}
 }
 function register() {

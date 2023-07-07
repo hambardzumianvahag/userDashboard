@@ -39,7 +39,7 @@
 
 }
 
-.tables {
+.active-btn {
 	background-color: #E32F6E;
 }
 
@@ -206,6 +206,58 @@ tr:hover {
 	text-decoration: none;
 	cursor: pointer;
 }
-.user_photo{
+
+.user_photo {
 	width: 25%;
+}
+
+.game-container {
+	width: 85%;
+	margin: 0 auto;
+}
+
+.game-name {
+	text-align: center;
+	margin: 15px;
+}
+
+.game-desc {
+	padding-top: 10px;
+}
+
+.game-input {
+	padding: 12px 10px;
+	margin: 12px 0px;
+}
+
+.game-btn {
+	padding: 12px 15px;
+	margin: 10px;
+	cursor: pointer;
+	border: 1px solid #E32F6E;
+	color: #E32F6E;
+	font-weight: bold;
+}
+
+.game-points {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-top: 20px;
+}
+.my-point, .computer-point{
+	text-align: center;
+	margin: 10px;
+}
+.game-numbers{
+	display:flex ;
+	justify-content: space-between;
+	align-items: center;
+}
+.my-number,.computer-number{
+	text-align: center;
+	margin: 10px;
+}
+.result{
+	text-align:center;
 }

@@ -88,8 +88,12 @@ function createPaginationButtons(totalItems) {
 		button.addEventListener('click', () => {
 			currentPage = i;
 			// !
-			fetchDataAndPrint('https://dummyjson.com/users');
-			document.querySelector('.input').value = '';
+			if (document.querySelector('.input').value == '') {
+				fetchDataAndPrint('https://dummyjson.com/users');
+			}
+			else {
+				fetchDataAndPrint(`https://dummyjson.com/users/search?q=${document.querySelector('.input').value}`);
+			}
 			//!
 			updatePaginationButtons();
 		});
@@ -171,3 +175,80 @@ profile.forEach(elem => {
 		modal.style.display = 'block';
 	})
 })
+
+let mainSection = document.querySelector('.main')
+let gameBtn = document.querySelector('.game')
+let tableBtn = document.querySelector('.active-btn')
+gameBtn.addEventListener('click', () => {
+	gameBtn.classList.add('active-btn')
+	gameBtn.classList.remove('option')
+	tableBtn.classList.add('option')
+	tableBtn.classList.remove('active-btn')
+
+	mainSection.innerHTML = `
+	<div class='game-container'>
+	<h1 class='game-name'>Game vs Computer</h1>
+	<p class='game-desc'>the rules of the game are as follows: the computer stores a number between 0-20, you have to guess that number by typing in the input. If you guess correctly, you get 1 point. If you guess wrong, the computer scores a point</p>
+	<div class='game-points'>
+	<div>
+	<h1>My Points</h1>
+	<h1 class='my-point'>0</h1>
+	</div>
+	<div>
+	<h1>Computer Points</h1>
+	<h1 class='computer-point'>0</h1>
+	</div>
+	</div>
+	<hr>
+	<input type='text' placeholder='Enter Number' class='game-input' /> <br>
+	<button class='game-btn'>Check</button>
+	<hr>
+	<div class='game-numbers'>
+		<div>
+		<h1>My Number</h1>
+		<h1 class='my-number'></h1>
+		</div>
+		<div>
+		<h1>Computer Number</h1>
+		<h1 class='computer-number'></h1>
+		</div>
+	</div>
+	<div>
+			<h1 class='result'>aaa</h1>
+		</div>
+	`
+	let result = mainSection.querySelector('.result')
+
+	let myPoint = mainSection.querySelector('.my-point')
+	let compPoint = mainSection.querySelector('.computer-point')
+	let compNumber = mainSection.querySelector('.computer-number')
+	let myNumber = mainSection.querySelector('.my-number')
+	let checkBtn = mainSection.querySelector('.game-btn')
+	let gameInp = mainSection.querySelector('.game-input')
+
+	checkBtn.addEventListener('click', () => {
+		myNumber.innerHTML = gameInp.value
+		compNumber.innerHTML = Math.round(Math.random() * 20)
+
+		if (myNumber.innerHTML == compNumber.innerHTML) {
+			myPoint.innerHTML++
+			result.innerHTML = 'You Won!'
+
+		}
+		else if (myNumber.innerHTML == '') {
+			result.innerHTML = 'Please Enter a Number'
+		}
+		else {
+			compPoint.innerHTML++
+			result.innerHTML = 'You Lost!'
+		}
+	})
+})
+
+tableBtn.addEventListener('click', () => {
+	gameBtn.classList.remove('active-btn')
+	gameBtn.classList.add('option')
+	tableBtn.classList.add('active-btn')
+	tableBtn.classList.remove('option')
+	window.location.href = './second.html'
+})	
